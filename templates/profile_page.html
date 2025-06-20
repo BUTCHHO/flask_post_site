@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Профиль {{ user.name }}{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="row">
+        <!-- Левая часть с именем пользователя -->
+        <div class="col-md-3">
+            <h1 class="username">{{ user.name }}</h1>
+        </div>
+
+        <!-- Правая часть с био и дополнительной информацией -->
+        <div class="col-md-9">
+            <p class="bio">{{ user.bio or 'Пользователь пока не добавил информацию о себе.' }}</p>
+
+            <div class="mt-4">
+                <a href="" class="btn btn-link">Статьи</a>
+                <a href="" class="btn btn-link">Подписчики ({{ user.followers_count }})</a>
+                <a href="" class="btn btn-link">Подписан на </a>
+                <a href="" class="btn btn-link">Понравились ({{ user.liked_posts_count }})</a>
+
+                <!-- Кнопка "Подписаться" -->
+                <form method="POST" class="d-inline">
+                    <input type="hidden" name="form_type" value="follow">
+                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                    <button type="submit" class="btn btn-primary">Подписаться</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
